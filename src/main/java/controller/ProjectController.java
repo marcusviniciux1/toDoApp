@@ -73,7 +73,6 @@ public class ProjectController {
 
         String sql = "DELETE FROM projects WHERE id = ?";
 
-
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -127,7 +126,6 @@ public class ProjectController {
         } finally {
             ConnectionFactory.closeConnection(connection, statement, resultSet);
         }
-
 
         return projects;
 

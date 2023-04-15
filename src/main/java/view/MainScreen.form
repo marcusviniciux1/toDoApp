@@ -125,7 +125,7 @@
               <Component id="jPanelToolBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jPanelTasks" pref="0" max="32767" attributes="0"/>
+                  <Component id="jPanelTasks" pref="84" max="32767" attributes="0"/>
                   <Component id="jPanelProjects" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -260,6 +260,9 @@
               <Image iconType="3" name="/add.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelProjectsAddMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

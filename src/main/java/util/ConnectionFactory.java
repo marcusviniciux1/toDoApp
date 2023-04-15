@@ -43,7 +43,7 @@ public class ConnectionFactory {
     }
 
     public static void closeConnection(Connection connection,
-                                       PreparedStatement statement, ResultSet resultSet) {
+            PreparedStatement statement, ResultSet resultSet) {
         try {
             if (connection != null) {
                 connection.close();
@@ -51,7 +51,7 @@ public class ConnectionFactory {
             if (statement != null) {
                 statement.close();
             }
-            if(resultSet != null){
+            if (resultSet != null) {
                 resultSet.close();
             }
         } catch (Exception ex) {

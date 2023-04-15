@@ -85,13 +85,11 @@ public class TaskController {
             ConnectionFactory.closeConnection(connection, statement);
         }
 
-
     }
 
     public void removeById(int taskId) {
 
         String sql = "DELETE FROM tasks WHERE id = ?";
-
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -151,7 +149,6 @@ public class TaskController {
         } finally {
             ConnectionFactory.closeConnection(connection, statement, resultSet);
         }
-
 
         return tasks;
 

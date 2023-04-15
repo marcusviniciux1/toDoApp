@@ -5,7 +5,6 @@
  */
 package toDoApp;
 
-
 import controller.ProjectController;
 import controller.TaskController;
 import model.Project;
@@ -14,7 +13,6 @@ import model.Task;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-
 
 /**
  * @author Vinicius
@@ -35,17 +33,13 @@ public class Main {
 //        project.setDescription("description");
 //
 //        projectController.save(project);
-
 //        projectController.update(project);
-
 //        List<Project> projects = projectController.getAll();
 //        System.out.println("Total de projetos = " + projects.size());
-
 //        projectController.removeById(2);
-
         TaskController taskController = new TaskController();
 
-        Task task= new Task();
+        Task task = new Task();
         task.setIdProject(1);
         task.setName("Criar as telas da aplicação");
         task.setDescription("Devem ser criadas telas para os cadastros");
@@ -57,7 +51,6 @@ public class Main {
 
 //        task.setName("Alterar telas da aplicação");
 //        taskController.update(task);
-
         List<Task> tasks = taskController.getAll(1);
         System.out.println("Total de tarefas = " + tasks.size());
     }
