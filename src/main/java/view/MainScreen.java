@@ -14,6 +14,8 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
+import model.Task;
+import util.TaskTableModel;
 
 /**
  *
@@ -24,7 +26,9 @@ public class MainScreen extends javax.swing.JFrame {
     ProjectController projectController;
     TaskController taskController;
 
-    DefaultListModel projectModel;
+    DefaultListModel projectsModel;
+
+    TaskTableModel tasksModel;
 
     public MainScreen() {
         initComponents();
@@ -245,7 +249,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         jTableTasks.setBackground(java.awt.Color.white);
         jTableTasks.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTableTasks.setForeground(java.awt.Color.white);
+        jTableTasks.setForeground(new java.awt.Color(0, 0, 0));
         jTableTasks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -276,6 +280,7 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.setRowHeight(50);
         jTableTasks.setSelectionBackground(new java.awt.Color(0, 153, 102));
         jTableTasks.setSelectionForeground(java.awt.Color.white);
+        jTableTasks.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableTasks.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(jTableTasks);
 
@@ -424,21 +429,30 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     public void initComponentsModel() {
-        projectModel = new DefaultListModel();
+        projectsModel = new DefaultListModel();
         loadProjects();
+
+        tasksModel = new TaskTableModel();
+        jTableTasks.setModel(tasksModel);
+        loadTasks(10);
+    }
+
+    public void loadTasks(int idProject) {
+        List<Task> tasks = taskController.getAll(idProject);
+        tasksModel.setTasks(tasks);
     }
 
     public void loadProjects() {
         List<Project> projects = projectController.getAll();
 
-        projectModel.clear();
+        projectsModel.clear();
 
         for (int i = 0; i < projects.size(); i++) {
             Project project = projects.get(i);
-            projectModel.addElement(project);
+            projectsModel.addElement(project);
         }
 
-        jListProjects.setModel(projectModel);
+        jListProjects.setModel(projectsModel);
     }
 
 }
