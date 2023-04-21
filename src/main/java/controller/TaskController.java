@@ -38,7 +38,6 @@ public class TaskController {
         } catch (Exception ex) {
             throw new RuntimeException("Erro ao salvar a tarefa." + ex.getMessage(), ex);
         } finally {
-            //Fecha as conex�es
             try {
                 if (statement != null) {
                     statement.close();
@@ -54,7 +53,7 @@ public class TaskController {
 
     public void update(Task task) {
 
-        String sql = "UPDATE tasks SET " + "idProject = ?, " + "name = ?, " + "description = ?, " + "notes = ?, " + "completed = ?, " + "deadline = ?, " + "createdAt = ?, " + "updatedAt = ?, " + "WHERE id = ?";
+        String sql = "UPDATE tasks SET idProject = ?, name = ?, description = ?, notes = ?, deadline = ?, completed = ?, createdAt = ?, updatedAt = ? WHERE id = ?";
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -70,16 +69,16 @@ public class TaskController {
             statement.setInt(1, task.getIdProject());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
-            statement.setString(5, task.getNotes());
-            statement.setBoolean(4, task.isIsCompleted());
-            statement.setDate(6, new Date(task.getDeadline().getTime()));
-            statement.setDate(7, new Date(task.getCreatedAt().getTime()));
-            statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
+            statement.setString(4, task.getNotes());
+            statement.setDate(5, new java.sql.Date(task.getDeadline().getTime()));
+            statement.setBoolean(6, task.isIsCompleted());
+            statement.setDate(7, new java.sql.Date(task.getCreatedAt().getTime()));
+            statement.setDate(8, new java.sql.Date(task.getUpdatedAt().getTime()));
             statement.setInt(9, task.getId());
 
             //Executando a query
             statement.execute();
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException("Erro ao atualizar a tarefa." + ex.getMessage(), ex);
         } finally {
             ConnectionFactory.closeConnection(connection, statement);
