@@ -13,6 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Project;
 import model.Task;
 import util.ButtonColumnCellRenderer;
@@ -383,6 +384,7 @@ public class MainScreen extends javax.swing.JFrame {
                 taskController.update(task);
                 break;
             case 4:
+                JOptionPane.showMessageDialog(rootPane, "Editar a tarefa");
                 break;
             case 5:
                 taskController.removeById(task.getId());
